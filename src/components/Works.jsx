@@ -4,6 +4,10 @@ import {
   ExternalLink,
 } from "lucide-react";
 
+/* =========================================
+   PROJECT DATA
+========================================= */
+
 const projects = [
   {
     number: "01",
@@ -21,10 +25,10 @@ const projects = [
       "Tailwind",
     ],
 
-    image: "/money-splitter.png",
+    // public/splitter.png
+    image: "/splitter.png",
 
-    url:
-      "https://money-splitter-lake.vercel.app/",
+    url: "https://money-splitter-lake.vercel.app/",
 
     imagePosition: "object-center",
   },
@@ -45,11 +49,16 @@ const projects = [
       "Responsive Design",
     ],
 
-    image: "/invitation.png",
+    // public/invitation.png
+    image: "/inivitation.png",
 
-    url:
-      "https://invitation-ten-xi.vercel.app/",
+    url: "https://invitation-ten-xi.vercel.app/",
 
+    /*
+      Your invitation screenshot is tall,
+      so object-top keeps the important
+      upper section visible.
+    */
     imagePosition: "object-top",
   },
 
@@ -69,7 +78,8 @@ const projects = [
       "Firestore",
     ],
 
-    image: "/food-ordering.png",
+    // public/menu.png
+    image: "/menu.png",
 
     url:
       "https://menu-h42mpd0qw-marls-projects-8b56fb40.vercel.app/",
@@ -78,17 +88,46 @@ const projects = [
   },
 ];
 
+/* =========================================
+   WORK SECTION
+========================================= */
+
 function Works() {
   return (
     <section
       id="work"
-      className="relative z-10 overflow-hidden border-t border-white/[0.08] px-5 py-20 sm:px-6 sm:py-24 lg:px-12 lg:py-28"
+      className="
+        relative z-10
+        overflow-hidden
+        border-t border-white/[0.08]
+        px-5 py-20
+        sm:px-6 sm:py-24
+        lg:px-12 lg:py-28
+      "
     >
-      <div className="pointer-events-none absolute -right-10 top-10 select-none text-[100px] font-black tracking-[-0.08em] text-white/[0.015] sm:text-[150px] lg:text-[200px]">
+      {/* LARGE BACKGROUND TEXT */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -right-10 top-10
+          select-none
+          text-[100px]
+          font-black
+          tracking-[-0.08em]
+          text-white/[0.015]
+          sm:text-[150px]
+          lg:text-[200px]
+        "
+      >
         WORK
       </div>
 
       <div className="relative mx-auto max-w-[1400px]">
+
+        {/* SECTION LABEL */}
+
         <div className="flex items-center gap-4">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/40">
             03 / Selected Work
@@ -97,7 +136,18 @@ function Works() {
           <div className="h-px w-10 bg-white/15" />
         </div>
 
-        <div className="mt-5 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+        {/* HEADING */}
+
+        <div
+          className="
+            mt-5
+            flex flex-col
+            justify-between
+            gap-5
+            md:flex-row
+            md:items-end
+          "
+        >
           <motion.h2
             initial={{
               opacity: 0,
@@ -107,11 +157,20 @@ function Works() {
               opacity: 1,
               x: 0,
             }}
-            viewport={{ once: true }}
+            viewport={{
+              once: true,
+            }}
             transition={{
               duration: 0.7,
             }}
-            className="text-[44px] font-black tracking-[-0.055em] text-white sm:text-6xl lg:text-7xl"
+            className="
+              text-[44px]
+              font-black
+              tracking-[-0.055em]
+              text-white
+              sm:text-6xl
+              lg:text-7xl
+            "
           >
             PROJECTS
           </motion.h2>
@@ -122,9 +181,21 @@ function Works() {
           </p>
         </div>
 
-        {/* SAME CARDS — ONLY RESPONSIVE GRID */}
+        {/* =========================================
+            PROJECT GRID
+        ========================================= */}
 
-        <div className="mt-10 grid gap-5 sm:mt-14 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <div
+          className="
+            mt-10
+            grid
+            gap-5
+            sm:mt-14
+            sm:gap-6
+            md:grid-cols-2
+            xl:grid-cols-3
+          "
+        >
           {projects.map(
             (project, index) => (
               <ProjectCard
@@ -139,6 +210,10 @@ function Works() {
     </section>
   );
 }
+
+/* =========================================
+   PROJECT CARD
+========================================= */
 
 function ProjectCard({
   project,
@@ -166,22 +241,45 @@ function ProjectCard({
       whileHover={{
         y: -8,
       }}
-      className="group min-w-0 overflow-hidden rounded-[22px] border border-white/10 bg-[#0e0e0e] transition-colors duration-500 hover:border-white/25"
+      className="
+        group
+        min-w-0
+        overflow-hidden
+        rounded-[22px]
+        border border-white/10
+        bg-[#0e0e0e]
+        transition-colors
+        duration-500
+        hover:border-white/25
+      "
     >
-      {/* SAME THUMBNAIL */}
+
+      {/* =========================================
+          PROJECT THUMBNAIL
+      ========================================= */}
 
       <a
         href={project.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="relative block aspect-[4/3] overflow-hidden bg-[#111]"
         aria-label={`Open ${project.title}`}
+        className="
+          relative
+          block
+          aspect-[4/3]
+          overflow-hidden
+          bg-[#111]
+        "
       >
+        {/* ACTUAL SCREENSHOT */}
+
         <img
           src={project.image}
           alt={`${project.title} preview`}
+          loading="lazy"
           className={`
-            h-full w-full
+            h-full
+            w-full
             object-cover
             ${project.imagePosition}
             transition-all
@@ -191,51 +289,106 @@ function ProjectCard({
           `}
         />
 
-        <div className="pointer-events-none absolute inset-0 bg-black/5 transition-all duration-500 group-hover:bg-black/35" />
+        {/* SMALL DARK OVERLAY */}
 
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0e0e0e]/70 via-transparent to-transparent" />
+        <div
+          className="
+            pointer-events-none
+            absolute inset-0
+            bg-black/5
+            transition-all
+            duration-500
+            group-hover:bg-black/35
+          "
+        />
 
-        {/* NUMBER */}
+        {/* BOTTOM GRADIENT */}
 
-        <div className="absolute left-4 top-4 flex h-10 min-w-10 items-center justify-center rounded-full border border-white/15 bg-black/50 px-3 backdrop-blur-md sm:left-5 sm:top-5 sm:h-11 sm:min-w-11">
+        <div
+          className="
+            pointer-events-none
+            absolute inset-0
+            bg-gradient-to-t
+            from-[#0e0e0e]/70
+            via-transparent
+            to-transparent
+          "
+        />
+
+        {/* PROJECT NUMBER */}
+
+        <div
+          className="
+            absolute
+            left-4 top-4
+            flex
+            h-10 min-w-10
+            items-center
+            justify-center
+            rounded-full
+            border border-white/15
+            bg-black/50
+            px-3
+            backdrop-blur-md
+            sm:left-5
+            sm:top-5
+            sm:h-11
+            sm:min-w-11
+          "
+        >
           <span className="text-sm font-bold text-white">
             {project.number}
           </span>
         </div>
 
-        {/* ARROW */}
+        {/* TOP RIGHT ARROW */}
 
         <div
           className="
-            absolute right-4 top-4
-            flex h-10 w-10
-            items-center justify-center
+            absolute
+            right-4 top-4
+            flex
+            h-10 w-10
+            items-center
+            justify-center
             rounded-full
             border border-white/15
             bg-black/50
             !text-white
             backdrop-blur-md
-            transition-all duration-300
+            transition-all
+            duration-300
             group-hover:border-white
             group-hover:bg-white
             group-hover:!text-black
-            sm:right-5 sm:top-5
-            sm:h-11 sm:w-11
+            sm:right-5
+            sm:top-5
+            sm:h-11
+            sm:w-11
           "
         >
           <ArrowUpRight
             size={17}
-            className="text-current transition-transform duration-300 group-hover:rotate-12"
+            className="
+              text-current
+              transition-transform
+              duration-300
+              group-hover:rotate-12
+            "
           />
         </div>
 
-        {/* SAME HOVER */}
+        {/* =========================================
+            VIEW PROJECT HOVER
+        ========================================= */}
 
         <div
           className="
+            pointer-events-none
             absolute inset-0
             hidden
-            items-center justify-center
+            items-center
+            justify-center
             opacity-0
             transition-all
             duration-500
@@ -244,13 +397,22 @@ function ProjectCard({
           "
         >
           <motion.div
+            initial={{
+              scale: 0.9,
+            }}
+            whileHover={{
+              scale: 1.03,
+            }}
             className="
-              flex items-center gap-2
+              flex
+              items-center
+              gap-2
               rounded-full
               border border-white/20
               bg-black/65
               px-5 py-3
-              text-sm font-semibold
+              text-sm
+              font-semibold
               !text-white
               backdrop-blur-xl
             "
@@ -267,34 +429,93 @@ function ProjectCard({
         </div>
       </a>
 
-      {/* PROJECT INFO */}
+      {/* =========================================
+          PROJECT DETAILS
+      ========================================= */}
 
       <div className="p-5 sm:p-6">
-        <p className="text-xs font-medium uppercase tracking-[0.1em] text-white/30">
+
+        {/* CATEGORY */}
+
+        <p
+          className="
+            text-xs
+            font-medium
+            uppercase
+            tracking-[0.1em]
+            text-white/30
+          "
+        >
           {project.category}
         </p>
+
+        {/* TITLE */}
 
         <a
           href={project.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="group/title mt-2 flex items-center justify-between gap-4 !text-white"
+          className="
+            group/title
+            mt-2
+            flex
+            items-center
+            justify-between
+            gap-4
+            !text-white
+          "
         >
-          <h3 className="text-xl font-black tracking-[-0.03em] text-white">
+          <h3
+            className="
+              text-xl
+              font-black
+              tracking-[-0.03em]
+              text-white
+            "
+          >
             {project.title}
           </h3>
 
           <ArrowUpRight
             size={17}
-            className="shrink-0 text-white/25 transition-all duration-300 group-hover/title:-translate-y-0.5 group-hover/title:translate-x-0.5 group-hover/title:text-white"
+            className="
+              shrink-0
+              text-white/25
+              transition-all
+              duration-300
+              group-hover/title:-translate-y-0.5
+              group-hover/title:translate-x-0.5
+              group-hover/title:text-white
+            "
           />
         </a>
 
-        <p className="mt-4 text-sm leading-6 text-white/40">
+        {/* DESCRIPTION */}
+
+        <p
+          className="
+            mt-4
+            text-sm
+            leading-6
+            text-white/40
+          "
+        >
           {project.description}
         </p>
 
-        <div className="mt-6 flex flex-wrap gap-2 border-t border-white/[0.07] pt-5">
+        {/* TECHNOLOGY */}
+
+        <div
+          className="
+            mt-6
+            flex
+            flex-wrap
+            gap-2
+            border-t
+            border-white/[0.07]
+            pt-5
+          "
+        >
           {project.tech.map(
             (item) => (
               <span
@@ -304,9 +525,11 @@ function ProjectCard({
                   border border-white/[0.08]
                   bg-white/[0.025]
                   px-3 py-1.5
-                  text-xs font-medium
+                  text-xs
+                  font-medium
                   text-white/40
-                  transition-all duration-300
+                  transition-all
+                  duration-300
                   group-hover:border-white/15
                   group-hover:text-white/60
                 "
@@ -317,11 +540,25 @@ function ProjectCard({
           )}
         </div>
 
+        {/* OPEN PROJECT */}
+
         <a
           href={project.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="group/link mt-6 inline-flex items-center gap-2 text-sm font-semibold !text-white/50 transition-colors duration-300 hover:!text-white"
+          className="
+            group/link
+            mt-6
+            inline-flex
+            items-center
+            gap-2
+            text-sm
+            font-semibold
+            !text-white/50
+            transition-colors
+            duration-300
+            hover:!text-white
+          "
         >
           <span className="text-current">
             Open Project
@@ -329,7 +566,13 @@ function ProjectCard({
 
           <ArrowUpRight
             size={14}
-            className="text-current transition-transform duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+            className="
+              text-current
+              transition-transform
+              duration-300
+              group-hover/link:translate-x-0.5
+              group-hover/link:-translate-y-0.5
+            "
           />
         </a>
       </div>
